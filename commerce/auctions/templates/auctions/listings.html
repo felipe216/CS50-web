@@ -1,0 +1,24 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>Active Listings</h2>
+
+    <h3>Listing: {{ list_form.name }}</h3>
+        <img src="{{ list_form.image }}">
+        <h4>${{ list_form.price }}</h4>
+        <ul>
+            <h5>Details:</h5>
+            <li>Listed by: {{ list_form.owner }}</li>
+            <li>Category: {{ list_form.category }}</li>
+        </ul>
+
+        {{ bids.times }}
+
+
+        <form action="{% url 'bid' id=list_form.id %}" method="post">
+            {% csrf_token %}
+            {{ list_bid }}
+            <input class="btn btn-primary" type="submit" value="Bid">
+        </form>
+    
+{% endblock %}1
